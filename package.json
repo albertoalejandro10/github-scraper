@@ -1,0 +1,18 @@
+{
+  "name": "github-scraper-puppeteer",
+  "version": "1.0.0",
+  "description": "Scraper for GitHub profiles and their followings and followers using Puppeteer",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --env-file=.env index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@9.7.1+sha512.faf344af2d6ca65c4c5c8c2224ea77a81a5e8859cbc4e06b1511ddce2f0151512431dd19e6aff31f2c6a8f5f2aced9bd2273e1fed7dd4de1868984059d2c4247",
+  "dependencies": {
+    "puppeteer": "23.2.1"
+  },
+  "type": "module"
+}
