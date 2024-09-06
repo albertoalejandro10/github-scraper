@@ -1,4 +1,4 @@
-import { getArrayTextContent, getTextContent } from './getTextContent.js'
+import { getArrayTextContent, getTextContent } from '../utils/getTextContent.js'
 
 export const getProfile = async (page) => {
   try {

@@ -1,9 +1,7 @@
 import puppeteer from 'puppeteer'
 
-import { getProfile } from './getProfile.js'
-import { getFollowers } from './getFollowers.js'
-import { getFollowing } from './getFollowings.js'
-import { comparatorArray } from './comparatorArray.js'
+import { getProfile, getFollowers, getFollowing } from './scraper/pivot.js'
+import { comparatorArray } from './utils/comparatorArray.js'
 
 (async () => {
   const username = process.env.default_username
@@ -36,10 +34,8 @@ import { comparatorArray } from './comparatorArray.js'
   const followers = await scrapePage(`https://github.com/${username}?tab=followers`, getFollowers)
   const following = await scrapePage(`https://github.com/${username}?tab=following`, getFollowing)
 
-  // console.log('Profile:', profile)
-  // console.log('Followers:', followers)
-  // console.log('Following:', following)
+  console.log('Profile:', profile)
 
-  const followersDifference = comparatorArray(followers, following)
-  console.log('Following who doesnt follow you: ', followersDifference)
+  const noFollowback = comparatorArray(followers, following)
+  console.log("Following who doesn't follow you: ", noFollowback)
 })()
