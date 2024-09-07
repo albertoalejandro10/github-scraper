@@ -10,8 +10,8 @@ export const getProfile = async (page) => {
       bio: await getTextContent(page, '.user-profile-bio'),
       avatarUrl: await getAvatarUrl(page),
 
-      totalFollowers: await getTextContent(page, '.js-profile-editable-area a:nth-child(1)', el => el.textContent.trim().replace(/[^0-9]/g, '')),
-      totalFollowing: await getTextContent(page, '.js-profile-editable-area a:nth-child(2)', el => el.textContent.trim().replace(/[^0-9]/g, '')),
+      followers: await getTextContent(page, '.js-profile-editable-area a:nth-child(1)', el => el.textContent.trim().replace(/[^0-9]/g, '')),
+      following: await getTextContent(page, '.js-profile-editable-area a:nth-child(2)', el => el.textContent.trim().replace(/[^0-9]/g, '')),
 
       location: await getTextContent(page, '.vcard-details > li.vcard-detail[itemprop="homeLocation"] > span'),
       // TODO: Get email from the page but you need to be logged in to see it. 
