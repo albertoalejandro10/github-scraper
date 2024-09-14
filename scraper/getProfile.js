@@ -14,8 +14,6 @@ export const getProfile = async (page) => {
       following: await getTextContent(page, '.js-profile-editable-area a:nth-child(2)', el => el.textContent.trim().replace(/[^0-9]/g, '')),
 
       location: await getTextContent(page, '.vcard-details > li.vcard-detail[itemprop="homeLocation"] > span'),
-      // TODO: Get email from the page but you need to be logged in to see it. 
-      // email: await getEmail(page),
       website: await getTextContent(page, '.vcard-details > li.vcard-detail[itemprop="url"] > a'),
       socialNetworks: await getArrayTextContent(page, '.vcard-details > li.vcard-detail[itemprop="social"] > a', elements => elements.map(el => el.href)),
       badges: await getBadges(page),
