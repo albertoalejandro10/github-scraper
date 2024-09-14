@@ -45,7 +45,7 @@ const scrape = async (username) => {
   const usernameExists = await scrapePage(`https://github.com/search?q=${username}&type=users`, checkUsername)
   
   if (!usernameExists) {
-    console.log('Username not found')
+    // console.log('Username not found')
     return {
       error: 'Username not found',
       profile: null,

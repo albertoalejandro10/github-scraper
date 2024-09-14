@@ -1,7 +1,7 @@
 import { getArrayTextContent } from '../utils/getTextContent.js'
 
 export const getFollowing = async (page) => {
-  console.log('Extracting following...')
+  // console.log('Extracting following...')
 
   let following = []
   let lastPageReached = false
@@ -18,7 +18,7 @@ export const getFollowing = async (page) => {
 
     // Check if the last button's text is "Next"
     if (nextPageText !== 'Next') {
-      console.log('No more pages, exiting...')
+      // console.log('No more pages, exiting...')
       lastPageReached = true
     } else {
       // Get the URL and click the "Next" button
