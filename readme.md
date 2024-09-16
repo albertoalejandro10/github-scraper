@@ -16,7 +16,7 @@ Make sure you have [pnpm](https://pnpm.io/) installed.
 
 1. Clone the repository:
    ```bash
-    git clone https://github.com/yourusername/github-scraper.git
+    git clone https://github.com/albertoalejandro10/github-scraper.git
     cd github-scraper
    ```
 2. Install dependencies
@@ -46,7 +46,7 @@ This project exposes a single POST endpoint to scrape GitHub profiles.
 - **Body**:
   ```json
   {
-    "username": "github-username"
+    "username": "albertoalejandro10"
   }
   ```
 
@@ -60,6 +60,7 @@ This project exposes a single POST endpoint to scrape GitHub profiles.
 ## Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request.
+It would be great if you starred the project and share it with your github friends. Thank you.
 
 ## License
 
