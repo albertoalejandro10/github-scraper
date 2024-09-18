@@ -6,7 +6,9 @@ export const getFollowing = async (page) => {
   let following = []
   let lastPageReached = false
   let currentPage = 1
-  const maxPages = 10
+  
+  // Set max pages based on environment
+  const maxPages = process.env.NODE_ENV === 'production' ? 10 : Infinity
 
   // Scrape followings from the current page and spread the results into followings
   following = await processScrapedData(await scrapeFollowing(page), following)
