@@ -1,15 +1,14 @@
-import puppeteer from 'puppeteer'
+// index.js
 import express from 'express'
 import cors from 'cors'
-import dotevn from 'dotenv'
+import dotenv from 'dotenv'
 
-import { checkUsername, getProfile, getFollowers, getFollowing } from './scraper/pivot.js'
+import { validateUsernameExists, getProfile, getFollowers, getFollowing } from './scraper/pivot.js'
 import { comparatorArray } from './utils/comparatorArray.js'
+import { scrapePage } from './scraper/scrapePage.js'
+import { closeBrowser } from './scraper/browser.js'
 
-dotevn.config()
-
-// Global broswer variable
-let browser = null
+dotenv.config()
 
 // App setup
 const app = express()
@@ -41,17 +40,9 @@ app.listen(port, () => {
 const scrape = async (username) => {
   console.log('Scraping GitHub profile for:', username)
 
-  // usernameExists its a Boolean value that indicates if the username exists on GitHub
-  const usernameExists = await scrapePage(`https://github.com/search?q=${username}&type=users`, checkUsername)
-  
-  if (!usernameExists) {
-    // console.log('Username not found')
-    return {
-      error: 'Username not found',
-      profile: null,
-      followers: [],
-      following: []
-    }
+  const validationError = await scrapePage(`https://github.com/${username}`, validateUsernameExists)
+  if (validationError) {
+    return validationError
   }
 
   const profile = await scrapePage(`https://github.com/${username}`, getProfile)
@@ -61,44 +52,8 @@ const scrape = async (username) => {
   await closeBrowser()
 
   const followback = comparatorArray(followers, following)
-
   return {
     profile,
     followback
-  }
-}
-
-const scrapePage = async (url, scraperFunction) => {
-  await initBrowser()
-  const page = await browser.newPage()
-
-  try {
-    await page.goto(url)
-    await page.setViewport({ width: 1280, height: 720 })
-    const data = await scraperFunction(page)
-    return data
-
-  } catch (error) {
-    console.error(`Error scraping ${url}:`, error)
-    return { error: `Failed to scrape ${url}` }
-    
-  } finally {
-    await page.close()
-  }
-}
-
-const initBrowser = async () => {
-  if (!browser) {
-    browser = await puppeteer.launch({
-      headless: process.env.PUPPETEER_HEADLESS === 'true',
-      args: process.env.NODE_ENV === 'production' ? ['--no-sandbox', '--disable-setuid-sandbox'] : [],
-    })
-  }
-}
-
-const closeBrowser = async () => {
-  if (browser) {
-    await browser.close()
-    browser = null
   }
 }

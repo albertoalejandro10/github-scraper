@@ -5,11 +5,13 @@ export const getFollowing = async (page) => {
 
   let following = []
   let lastPageReached = false
+  let currentPage = 1
+  const maxPages = 10
 
   // Scrape followings from the current page and spread the results into followings
   following = await processScrapedData(await scrapeFollowing(page), following)
 
-  while (!lastPageReached) {
+  while (!lastPageReached && currentPage < maxPages) {
     // Select all pagination buttons
     const paginationButtons = await page.$$('.Layout-main .paginate-container .pagination a')
     // The last button in the list is always the "Next" button
@@ -27,6 +29,8 @@ export const getFollowing = async (page) => {
 
       // Scrape followings from the new page and spread the results into following
       following = await processScrapedData(await scrapeFollowing(page), following)
+      
+      currentPage++
     }
   }
 
