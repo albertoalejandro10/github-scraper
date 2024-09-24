@@ -60,6 +60,7 @@ This project exposes a single POST endpoint to scrape GitHub profiles.
 ## Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request.
+
 It would be great if you starred the project and share it with your github friends. Thank you.
 
 ## License
