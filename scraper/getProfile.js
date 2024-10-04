@@ -10,8 +10,8 @@ export const getProfile = async (page) => {
       bio: await getTextContent(page, '.user-profile-bio') || 'Bio not available',
       avatar: await getAvatarUrl(page),
 
-      followers: await getTextContent(page, '.js-profile-editable-area a:nth-child(1)', el => el.textContent.trim().replace(/[^0-9]/g, '')) || '0',
-      following: await getTextContent(page, '.js-profile-editable-area a:nth-child(2)', el => el.textContent.trim().replace(/[^0-9]/g, '')) || '0',
+      followers: await getTextContent(page, '.js-profile-editable-area a:nth-child(1)', el => el.textContent.trim().replace(/[^0-9k.]/g, '')) || '0',
+      following: await getTextContent(page, '.js-profile-editable-area a:nth-child(2)', el => el.textContent.trim().replace(/[^0-9k.]/g, '')) || '0',
 
       location: await getTextContent(page, '.vcard-details > li.vcard-detail[itemprop="homeLocation"] > span') || 'Location not available',
       website: await getTextContent(page, '.vcard-details > li.vcard-detail[itemprop="url"] > a') || 'Website not available',

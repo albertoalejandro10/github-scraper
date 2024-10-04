@@ -2,7 +2,7 @@ import { getArrayTextContent } from './getTextContent.js'
 
 export const scrape = async (page) => {
   try {
-    await page.waitForSelector('.Layout-main')
+    await page.waitForSelector('turbo-frame[id="user-profile-frame"]')
 
     const avatar = await getArrayTextContent(
       page,

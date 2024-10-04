@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
-import { validateUsernameExists, getProfile, getFollowers, getFollowing } from './scraper/pivot.js'
+import { validateUsernameExists, getProfile, getFollowUsers } from './scraper/pivot.js'
 import { comparatorArray } from './utils/comparatorArray.js'
 import { scrapePage } from './scraper/scrapePage.js'
 import { closeBrowser } from './scraper/browser.js'
@@ -46,8 +46,8 @@ const scrape = async (username) => {
   }
 
   const profile = await scrapePage(`https://github.com/${username}`, getProfile)
-  const followers = await scrapePage(`https://github.com/${username}?tab=followers`, getFollowers)
-  const following = await scrapePage(`https://github.com/${username}?tab=following`, getFollowing)
+  const followers = await scrapePage(`https://github.com/${username}?tab=followers`, getFollowUsers)
+  const following = await scrapePage(`https://github.com/${username}?tab=following`, getFollowUsers)
 
   await closeBrowser()
 
